@@ -1,0 +1,5 @@
+.env
+.env.*
+*.log
+worker-output.txt
+gpt6-grok-workers/
