@@ -1,11 +1,13 @@
 ---
 name: gpt6-grok
-description: Pair a GPT-6 Codex lead with a scoped Grok worker in Cursor CLI for substantive coding or debugging across repositories when that handoff would help. Skip trivial and Git-only tasks.
+description: Pair a GPT-6 Codex lead with a scoped Grok worker in Cursor CLI when the user explicitly requests Grok or Cursor delegation, or when continuing that authorized workflow. Skip trivial and Git-only tasks.
 ---
 
 # GPT-6 / Grok handoff
 
 Use this workflow across projects. The active GPT-6 model owns the plan, integration, validation, and final answer; Grok handles a bounded investigation or implementation in its own Cursor CLI context. This skill does not select or switch the lead model. Name the actual active model accurately.
+
+Start a worker only when the user has requested Grok or Cursor delegation for the current task, including an ongoing authorized workflow. Ordinary coding or debugging requests, and requests to audit or edit this skill, do not authorize external model calls.
 
 1. Read the project's `AGENTS.md` and relevant validation guidance, and inspect Git state. Choose a self-contained task for Grok with clear boundaries and acceptance criteria. Keep secrets and unrelated context out of the brief; Cursor can read files in the workspace.
 2. Run [scripts/invoke_grok_worker.ps1](scripts/invoke_grok_worker.ps1) with `-Workspace <repository-root> -BriefPath <brief-file> -Mode Explore` for read-only work or `-Mode Implement` for scoped edits. The default worker model is `grok-4.7-high`; use `-Model` when the user specifies another available Grok model. Pass `-TrustWorkspace` only after inspecting the repository and deciding to trust it. The launcher records a transcript. Use `-DryRun` to check the setup without a model call.

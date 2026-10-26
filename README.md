@@ -8,6 +8,8 @@ This is a Windows/PowerShell launcher. It requires PowerShell 7, Git for impleme
 
 Copy the entire [`gpt6-grok/`](gpt6-grok/) directory into your Codex skills directory, so that the skill entrypoint is at `%USERPROFILE%\.codex\skills\gpt6-grok\SKILL.md`. Start a new Codex chat, then ask for `$gpt6-grok` on a substantive coding task.
 
+The skill disables implicit invocation. Request Grok or Cursor delegation explicitly for the current task; authorization continues through that workflow. Ordinary coding requests and requests to audit or edit the skill do not authorize a worker call.
+
 The launcher also supports a `-DryRun` setup check. `Explore` asks the worker to investigate without edits; `Implement` allows scoped edits in a clean Git checkout. Read the skill's [workflow instructions](gpt6-grok/SKILL.md) before use.
 
 ## Data and usage
